@@ -1,0 +1,18 @@
+#!/bin/bash
+echo "Se algo der errado, verifique se executou 'create_network' e 'update_env' antes..."
+
+target=${1:-""}
+
+if [ "$target" == "db" ]; then
+	echo "Tentando executar banco de dados"
+	cd ./db
+	docker compose up -d
+	cd ..
+elif  [ "$target" == "server" ]; then
+echo "Tentando executar servidor"
+	cd ./wtlcrud
+	docker compose up -d
+	cd ..
+else
+	echo "Argumento inválido. Garanta que o primeiro argumento seja 'db' ou 'server'"
+fi

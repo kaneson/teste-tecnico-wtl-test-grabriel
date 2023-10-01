@@ -1,0 +1,24 @@
+version: '3.6'
+
+services:
+  postgres:
+    container_name: wtl_db
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${PG_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${PG_PASSWORD:-changeme}
+      PGDATA: /data/postgres
+    volumes:
+       - ./pg_data:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - wtl_network
+    restart: unless-stopped
+    env_file:
+      - .env
+
+
+networks:
+  wtl_network:
+    external: true

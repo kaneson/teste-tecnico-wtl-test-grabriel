@@ -1,0 +1,3 @@
+#!/bin/bash
+cp .env ./db/.env
+cp .env ./wtlcrud/.env
