@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org" lang="pt-br">
+
+<head th:replace="~{fragments/head :: head(title = 'Agenda')}"></head>
+
+<body>
+
+    <header th:replace="~{fragments/nav :: nav}"></header>
+    <div class="d-flex w-100 justify-content-center pt-2">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/agenda}">Agenda</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Ver</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div th:if="${error}" th:insert="~{fragments/alert :: alert(text=${error}, type='error')}"></div>
+
+    <main class="container vh-100 text-center" th:if="${event != null}">
+        <div class="p-5">
+            <div class="mb-3 row">
+                <label for="eventName" class="col-sm-2 col-form-label">Nome</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="eventName" th:value="${event.name}">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="eventDesc" class="col-sm-2 col-form-label">Descrição</label>
+                <div class="col-sm-10">
+                    <textarea rows="3" readonly class="form-control" id="eventDesc" th:text="${event.description}">
+                        </textarea>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="eventDate" class="col-sm-2 col-form-label">Data</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="eventDate"
+                        th:value="${#temporals.format(event.date, 'dd/MM/yyyy')}">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script th:replace="~{fragments/scripts :: script}"></script>
+</body>
+
+</html>

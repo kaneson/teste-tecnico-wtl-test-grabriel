@@ -7,6 +7,7 @@ services:
     environment:
       POSTGRES_USER: ${PG_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${PG_PASSWORD:-changeme}
+      POSTGRES_DB: wtl_db
       PGDATA: /data/postgres
     volumes:
        - ./pg_data:/data/postgres

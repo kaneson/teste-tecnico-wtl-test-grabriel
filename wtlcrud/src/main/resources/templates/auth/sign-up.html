@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head(title='Cadastrar')}"></head>
+
+<body>
+    <main class="container vh-100">
+        <div th:if="${error != null}" th:insert="~{fragments/alert :: alert(text=${error}, type='error')}"></div>
+
+        <div class="d-flex row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 align-items-center pt-5">
+                <div class="text-center">
+                    <a th:href="@{/}">
+                        <img src="https://media.licdn.com/dms/image/D4D0BAQEUfUl2MNzo-w/company-logo_200_200/0/1695383600803?e=1704326400&v=beta&t=46UrJnXhflEXCfX1fAHe87GgcaUnbkfTaBKHojpMepM"
+                    class="img img-fluid"
+                    alt="logo">
+                    </a>
+                    <h4 class="mt-1 mb-5 pb-1">Wtl Crud - Cadastro</h4>
+                  </div>
+                
+                <form class="w-100" th:action="@{/auth/sign-up}" method="post" th:object="${signUpDTO}">
+                    <p class="w-100">Por favor, cadastre-se</p>
+                    <div class="mb-4">
+                        <input class="form-control" placeholder="Nome" type="text" name="name" th:value="${signUpDTO?.name}" />
+                    </div>
+                    <div class="mb-4">
+                        <input class="form-control" placeholder="CPF" type="text" name="cpf" th:value="${signUpDTO?.cpf}" />
+                    </div>
+                    <div class="mb-4">
+                        <input class="form-control" placeholder="Email" type="email" name="email" th:value="${signUpDTO?.email}" />
+                    </div>
+                    <div class="mb-4">
+                        <input class="form-control" placeholder="Nome de usuário" type="text" name="username" th:value="${signUpDTO?.username}" />
+                    </div>
+                    <div class="mb-4">
+                        <input class="form-control" placeholder="Senha" type="password" name="password" />
+                    </div>
+                    <div class="mb-4">
+                        <input class="form-control" placeholder="Confirme sua senha" type="password" name="passwordConfirm" th:field="*{passwordConfirm}" />
+                    </div>
+                    <div class="mb-4">
+                        <input class="w-100 btn btn-primary shadow" type="submit" value="Cadastrar" />
+                    </div>
+                    <div class="mb-4 d-flex justify-content-center">
+                        <span>
+                            Já tem uma conta? 
+                            <a th:href="@{/auth/sign-in}">Entre</a>
+                        </span>
+                    </div>
+                </form>
+    
+            </div>
+        </div>
+        
+    </main>
+
+    <script th:replace="~{fragments/scripts :: script}"></script>
+</body>
+
+</html>
