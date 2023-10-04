@@ -1,0 +1,37 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">WtlCrud</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav" style="--bs-scroll-height: 100px;" >
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Início</a>
+                </li>
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarAgendaDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="true">
+                        Agenda
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarAgendaDropdown">
+                        <li><a class="dropdown-item" th:href="@{/agenda/add}">Adicionar evento</a></li>
+                        <li><a class="dropdown-item" th:href="@{/agenda}">Listar eventos</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="d-flex align-items-center p-2 ps-0" sec:authorize="isAuthenticated()">
+                <span class="text-light text-decoration-underline"><span th:remove="tag" sec:authentication="name"></span></span>
+            </div>
+
+            <div class="d-flex ms-" sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <input class="btn btn-danger" type="submit" value="Sair"/>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</nav>

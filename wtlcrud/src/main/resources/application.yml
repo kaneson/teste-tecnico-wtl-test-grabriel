@@ -1,1 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${PG_HOST}:${PG_PORT}/${PG_DATABASE}
+    username: ${PG_USERNAME}
+    password: ${PG_PASSWORD}
 
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    format:
+      time: HH:mm
+  thymeleaf:
+    cache: false

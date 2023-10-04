@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org" lang="pt-br">
+
+<head th:replace="~{fragments/head :: head(title = 'Agenda')}"></head>
+
+<body>
+
+    <header th:replace="~{fragments/nav :: nav}"></header>
+
+    <div th:if="${error}" th:insert="~{fragments/alert :: alert(text='opa', type='error')}"></div>
+
+    <div class="d-flex w-100 justify-content-center pt-2">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/agenda}">Agenda</a></li>
+            </ol>
+        </nav>
+    </div>
+
+    <main class="container vh-100 text-center">
+        <div class="p-5">
+            <table class="table table-striped">
+                <thead>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Data</th>
+                    <th>Ação</th>
+                </thead>
+                <tbody>
+                    <tr th:each="agendaEvent : ${events}">
+                        <td th:text="${agendaEvent.id}"></td>
+                        <td th:text="${agendaEvent.name}"></td>
+                        <td th:text="${#temporals.format(agendaEvent.date, 'dd/MM/yyyy')}"></td>
+                        <td class="d-none d-lg-table-cell">
+                            <a th:href="@{/agenda/{id}(id=${agendaEvent.id})}" class="btn btn-info">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </a>
+                            <a th:href="@{/agenda/edit/{id}(id=${agendaEvent.id})}" class="btn btn-warning">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+                            <a th:href="@{/agenda/delete/{id}(id=${agendaEvent.id})}" class="btn btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                        <td class="d-table-cell d-lg-none">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <!-- Forms só pro style ficar igual, já que com <a> e <input submit> fica estranho -->
+                                    <li>
+                                        <a class="dropdown-item" th:href="@{/agenda/{id}(id=${agendaEvent.id})}">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" th:href="@{/agenda/edit/{id}(id=${agendaEvent.id})}">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" th:href="@{/agenda/delete/{id}(id=${agendaEvent.id})}">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script th:replace="~{fragments/scripts :: script}"></script>
+</body>
+
+</html>

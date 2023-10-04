@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org" lang="pt-br">
+
+<head th:replace="~{fragments/head :: head(title = 'Início')}"></head>
+
+<body>
+
+    <header th:replace="~{fragments/nav :: nav}"></header>
+
+    <main class="container vh-100 text-center">
+        <div class="d-flex row justify-content-center" sec:authorize="isAuthenticated()">
+
+            <div class="col-6 align-items-center pt-5">
+                Gerencie sua agenda <a th:href="@{/agenda}">aqui</a>
+            </div>
+        </div>
+
+        <div class="d-flex row justify-content-center" sec:authorize="! isAuthenticated()">
+
+            <div class="col-8 align-items-center pt-5">
+                <div class="d-flex row">
+                    <p class="text-wrap">Cadastre seus eventos futuros e nunca se confunda com as datas!</p>
+                    <a th:href="@{/auth/sign-in}" class="btn btn-outline-dark text-truncate">Entre</a>
+                    <span>
+                        ou
+                    </span>
+                    <a th:href="@{/auth/sign-up}" class="btn btn-outline-dark text-truncate">Cadastre-s e</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script th:replace="~{fragments/scripts :: script}"></script>
+</body>
+
+</html>

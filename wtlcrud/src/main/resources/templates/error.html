@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org" lang="pt-br">
+
+<head th:replace="~{fragments/head :: head(title = 'Oops')}"></head>
+
+<body>
+
+    <main class="container w-100 vh-100">
+        <div class="d-flex w-100 h-100 row align-content-center justify-items-center">
+
+            <p class="alert alert-danger">Parece que algo muito grave aconteceu...</p>
+            <div class="d-inline"><span class="lead">Vamos tentar novamente</span> <a class="lead" th:href="@{/}">do começo<a/></div>
+            </div>
+    </main>
+
+    <script th:replace="~{fragments/scripts :: script}"></script>
+</body>
+
+</html>

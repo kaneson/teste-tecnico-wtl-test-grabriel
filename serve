@@ -1,6 +1,10 @@
 #!/bin/bash
 echo "Se algo der errado, verifique se executou 'create_network' e 'update_env' antes..."
 
+set -o allexport
+source ./.env
+set +o allexport
+
 target=${1:-""}
 
 if [ "$target" == "db" ]; then

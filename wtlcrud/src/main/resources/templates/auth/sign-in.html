@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: head(title='Entrar')}"></head>
+
+<body>
+    <main class="container vh-100">
+        <div th:if="${error}" th:insert="~{fragments/alert :: alert(text='Usuário ou senha inválida', type='error')}"></div>
+        <div th:if="${registered}" th:insert="~{fragments/alert :: alert(text='Cadastro realizado com sucesso!', type='success')}"></div>
+
+        <div class="d-flex row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 align-items-center pt-5">
+                <div class="text-center">
+                    <a th:href="@{/}">
+                        <img src="https://media.licdn.com/dms/image/D4D0BAQEUfUl2MNzo-w/company-logo_200_200/0/1695383600803?e=1704326400&v=beta&t=46UrJnXhflEXCfX1fAHe87GgcaUnbkfTaBKHojpMepM"
+                    class="img img-fluid"
+                    alt="logo">
+                    </a>
+                    <h4 class="mt-1 mb-5 pb-1">Wtl Crud</h4>
+                  </div>
+                
+                <form class="w-100" th:action="@{/auth/sign-in}" method="post">
+                    <p class="w-100">Por favor, entre</p>
+                    <div class="mb-4">
+                        <input class="form-control" placeholder="Email" type="text" name="username" />
+                    </div>
+                    <div class="mb-4">
+                        <input class="form-control" placeholder="Senha" type="password" name="password" />
+                    </div>
+                    <div class="mb-4">
+                        <input class="w-100 btn btn-primary shadow" type="submit" value="Entrar" />
+                    </div>
+                </form>
+                <div class="w-100 text-center mt-2">
+                    <a href="#" class="text-muted text-decoration-none">Esqueceu sua senha?</a>
+                </div>
+                <div class="w-100 text-center mt-5">
+                    <span>
+                        <span class="me-1">Não tem uma conta?</span>
+                        <a th:href="@{/auth/sign-up}" class="btn btn-outline-primary text-dark">Cadastre-se</a>
+                    </span>
+                </div>
+    
+            </div>
+        </div>
+        
+    </main>
+
+    <script th:replace="~{fragments/scripts :: script}"></script>
+</body>
+
+</html>
